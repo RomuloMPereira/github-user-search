@@ -1,0 +1,8 @@
+$theme-colors: (
+  "primary": #1890ff,
+);
+
+$body-bg: linear-gradient(180deg, #ffffff 0%, #f7f9fa 100%);
+$body-color: #062847;
+
+@import "~bootstrap/scss/bootstrap.scss";
