@@ -3,7 +3,7 @@ import './styles.scss';
 
 type Props = {
     text: string;
-    clickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    clickHandler?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({ text, clickHandler }: Props) => {
