@@ -1,7 +1,15 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import Button from '../core/components/Button';
 import './styles.scss';
 
 const Home = () => {
+
+    const history = useHistory();
+
+    const handleStart = () => {
+        history.push('/search');
+    }
 
     return (
         <div className="home-container">
@@ -15,7 +23,7 @@ const Home = () => {
                         <br />Favor observar as instruções passadas no capítulo sobre a elaboração deste projeto.
                         <br />Este design foi adaptado a partir de Ant Design System for Figma, de Mateusz Wierzbicki: antforfigma@gmail.com
                     </h4>
-                    <button className="btn btn-primary">Começar</button>
+                    <Button text="começar" clickHandler={handleStart} />
                 </div>
             </div>
         </div>
