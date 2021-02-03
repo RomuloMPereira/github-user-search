@@ -47,7 +47,7 @@ const Search = () => {
                     </div>
                 </div>
             </form>
-            <Result />
+            <Result user={userResponse} />
         </>
     );
 }
