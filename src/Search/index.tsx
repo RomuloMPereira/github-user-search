@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Button from '../core/components/Button';
 import { UserResponse } from '../core/types/UserResponse';
 import { makeRequest } from '../core/utils/request';
+import ImageLoader from './components/Loader/ImageLoader';
+import InfoLoader from './components/Loader/InfoLoader';
 import Result from './components/Result';
 import './styles.scss';
 
@@ -58,8 +60,12 @@ const Search = () => {
                     </div>
                 </div>
             </form>
-            {isLoading && (<div>Loading</div>)}
-            {(userResponse && !hasError) && <Result user={userResponse} />}
+            {isLoading && (<div className="d-flex loader-container">
+                <ImageLoader />
+                <InfoLoader />
+            </div>)}
+            {(userResponse && !hasError && !isLoading) && <Result user={userResponse} />}
+            {hasError && <div className="error"><h3>Usuário não encontrado</h3></div>}
 
         </>
     );
