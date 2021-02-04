@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../core/components/Button';
 import { UserResponse } from '../core/types/UserResponse';
 import { makeRequest } from '../core/utils/request';
@@ -9,6 +9,8 @@ const Search = () => {
 
     const [user, setUser] = useState('');
     const [userResponse, setUserResponse] = useState<UserResponse>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [hasError, setHasError] = useState<boolean>(false);
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser(event.target.value);
@@ -16,9 +18,18 @@ const Search = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setIsLoading(true);
+        setHasError(false);
 
         makeRequest({ url: user })
-            .then((response) => setUserResponse(response.data));
+            .then((response) => setUserResponse(response.data))
+            .catch((error) => {
+                console.error(error);
+                setHasError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
 
         console.log(userResponse);
     }
@@ -47,7 +58,9 @@ const Search = () => {
                     </div>
                 </div>
             </form>
-            <Result user={userResponse} />
+            {isLoading && (<div>Loading</div>)}
+            {(userResponse && !hasError) && <Result user={userResponse} />}
+
         </>
     );
 }
