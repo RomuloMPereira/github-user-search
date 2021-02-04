@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../core/components/Button';
 import { UserResponse } from '../core/types/UserResponse';
 import { makeRequest } from '../core/utils/request';
@@ -29,11 +29,7 @@ const Search = () => {
                 console.error(error);
                 setHasError(true);
             })
-            .finally(() => {
-                setIsLoading(false);
-            });
-
-        console.log(userResponse);
+            .finally(() => setIsLoading(false));
     }
 
     return (

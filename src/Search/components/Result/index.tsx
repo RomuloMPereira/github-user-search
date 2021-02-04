@@ -9,12 +9,16 @@ type Props = {
 
 const Result = ({ user }: Props) => {
 
+    const clickHandler = () => {
+        window.location.href = user?.html_url || 'https://github.com/';
+    }
+
     return (
         <div className="result-container">
             <div className="row">
                 <div className="col-3 avatar-container">
                     <img src={user?.avatar_url} alt="Avatar" className="avatar" />
-                    <Button text="Ver perfil" />
+                    <Button text="Ver perfil" clickHandler={clickHandler} />
                 </div>
                 <div className="col-8 info-container">
                     <div className="d-flex">
